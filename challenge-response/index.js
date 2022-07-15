@@ -1,15 +1,15 @@
 //test url
-//http://127.0.0.1:5500/index.html?transaction_id=testtid&challenge_id=testcid&nonce=testnonce
+//http://127.0.0.1:5500/challenge-response/index.html?transaction_id=testtid&challenge_id=testcid&nonce=testnonce
 
 class GiveawayActions {
   init() {
     // set localstorage with params
-    storeQueryParameters();
+    this.storeQueryParameters();
   }
 
   actionCompleted() {
     // Retrieve and log localstorage values
-    const surfParams = getQueryParameters();
+    const surfParams = this.getQueryParameters();
     console.log("Surf Params: %o", surfParams);
 
     // eventually call API
@@ -41,6 +41,3 @@ class GiveawayActions {
 // site should call the following on page load
 const giveawayActions = new GiveawayActions();
 giveawayActions.init();
-
-// Then on the button click event, call:
-giveawayActions.actionCompleted();
