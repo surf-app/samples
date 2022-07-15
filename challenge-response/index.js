@@ -15,11 +15,11 @@ class GiveawayActions {
     // eventually call API
   }
 
-  getQueryParameters = () => {
+  getQueryParameters() {
     return JSON.parse(localStorage.getItem("surfParams"));
-  };
+  }
 
-  storeQueryParameters = () => {
+  storeQueryParameters() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
@@ -34,7 +34,7 @@ class GiveawayActions {
     };
 
     localStorage.setItem("surfParams", JSON.stringify(params));
-  };
+  }
 }
 
 // Somewhere outside the above class, the
