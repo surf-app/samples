@@ -20,8 +20,7 @@ class GiveawayActions {
   }
 
   storeQueryParameters() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
+    const urlParams = new URLSearchParams(window.location.search);
 
     const transactionId = urlParams.get("transaction_id");
     const challengeId = urlParams.get("challenge_id");
