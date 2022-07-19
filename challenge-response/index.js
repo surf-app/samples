@@ -10,9 +10,23 @@ class GiveawayActions {
   actionCompleted() {
     // Retrieve and log localstorage values
     const surfParams = this.getQueryParameters();
-    console.log("Surf Params: %o", surfParams);
+    console.log("Transaction ID: %o", surfParams.transaction_id);
 
-    // eventually call API
+    // localhost:3000/api/v1/challenge_transactions/:transaction_id/callback
+    // giveaways.joinsurf-staging.com/api/v1/challenge_transactions/:transaction_id/callback
+    // giveaways.joinsurf.com/api/v1/challenge_transactions/:transaction_id/callback
+
+    //API Call
+    fetch(`giveaways.joinsurf-staging.com/api/v1/challenge_transactions/:${surfParams.transaction_id}/callback`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        console.log("Api Callback: %o", json);
+      })
+      .catch((error) => {
+        console.log("Error calling API: %o", error);
+      });
   }
 
   getQueryParameters() {
@@ -21,15 +35,10 @@ class GiveawayActions {
 
   storeQueryParameters() {
     const urlParams = new URLSearchParams(window.location.search);
-
     const transactionId = urlParams.get("transaction_id");
-    const challengeId = urlParams.get("challenge_id");
-    const nonce = urlParams.get("nonce");
 
     const params = {
       transaction_id: transactionId,
-      challenge_id: challengeId,
-      nonce: nonce,
     };
 
     localStorage.setItem("surfParams", JSON.stringify(params));
