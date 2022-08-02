@@ -11,15 +11,13 @@ Next, go to **theme.liquid ->** scroll down to **<script> ->** Add **code snippe
 
 ```
 const urlParams = new URLSearchParams(window.location.search);
-      const transactionId = urlParams.get("transaction_id");
-
-      const params = {
-        transaction_id: transactionId,
-      };
-
-      if(params.transaction_id) {
-        localStorage.setItem("surfParams", JSON.stringify(params));
-      }
+const transactionId = urlParams.get("transaction_id");
+const params = {
+transaction_id: transactionId,
+};
+if(params.transaction_id) {
+localStorage.setItem("surfParams", JSON.stringify(params));
+}
 ```
 
 ![Screen Shot 2022-07-29 at 2 43 1](https://user-images.githubusercontent.com/65671141/181827403-2f1d77cf-cf29-4a94-b5c5-2996db43d7ff.png)
@@ -43,7 +41,7 @@ Next, scroll down to **Order status page ->** Add **second code snippet**
 const transactionID = JSON.parse(localStorage.getItem("surfParams")).transaction_id;
 
 if(transactionID) {
-fetch(`https://giveaways.joinsurf-staging.com/api/v1/entries/challenge_transactions/${transactionID}/callback`)
+fetch(`https://giveaways.joinsurf.com/api/v1/entries/challenge_transactions/${transactionID}/callback`)
       .then((response) => {
         return response.json();
       })
@@ -51,10 +49,10 @@ fetch(`https://giveaways.joinsurf-staging.com/api/v1/entries/challenge_transacti
           window.open('https://giveaways.joinsurf-staging.com' + json.redirect_url, '_blank').focus()
       })
       .catch((error) => {
-        console.log("Error calling surd API: %o", error);
+        console.log("Error calling surf API: %o", error);
       });
 
-       localStorage.setItem("surfParams", {});
+      localStorage.setItem("surfParams", {});
 }
 </script>
 {% endif %}
