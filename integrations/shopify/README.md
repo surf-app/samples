@@ -39,19 +39,19 @@ Next, scroll down to **Order status page ->** Add **second code snippet**
 <script>
 const transactionID = JSON.parse(localStorage.getItem("surfParams")).transaction_id;
 
-if(transactionID) {
-fetch(`https://giveaways.joinsurf.com/api/v1/entries/challenge_transactions/${transactionID}/callback`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((json) => {
-          window.open('https://giveaways.joinsurf-staging.com' + json.redirect_url, '_blank').focus()
-      })
-      .catch((error) => {
-        console.log("Error calling surf API: %o", error);
-      });
+if (transactionID) {
+  fetch(`https://giveaways.joinsurf.com/api/v1/entries/challenge_transactions/${transactionID}/callback`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      window.open('https://giveaways.joinsurf.com' + json.redirect_url, '_blank').focus();
+    })
+    .catch((error) => {
+      console.log("Error calling surf API: %o", error);
+    });
 
-      localStorage.setItem("surfParams", {});
+  localStorage.setItem("surfParams", {});
 }
 </script>
 {% endif %}
