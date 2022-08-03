@@ -11,12 +11,11 @@ Next, go to **theme.liquid ->** scroll down to **<script> ->** Add **code snippe
 
 ```
 const urlParams = new URLSearchParams(window.location.search);
-const transactionId = urlParams.get("transaction_id");
 const params = {
-transaction_id: transactionId,
+  transaction_id: urlParams.get("transaction_id")
 };
-if(params.transaction_id) {
-localStorage.setItem("surfParams", JSON.stringify(params));
+if (params.transaction_id) {
+  localStorage.setItem("surfParams", JSON.stringify(params));
 }
 ```
 
